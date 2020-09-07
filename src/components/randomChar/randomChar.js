@@ -11,7 +11,7 @@ export default class RandomChar extends Component {
         this.updateCharacrer();
     }
 
-    state= {
+    state = {
         char: {},
         loading: true,
         error: false
@@ -33,8 +33,8 @@ export default class RandomChar extends Component {
     }
 
     updateCharacrer() {
-        //const id = Math.floor(Math.random()*140 + 25);  // 25-140
-        const id = 1300000;
+        const id = Math.floor(Math.random()*140 + 25);  // 25-140
+        //const id = 1300000;
         this.gotService.getCharacters(id)
             .then(this.onCharLoaded)
             .catch(this.onError);
