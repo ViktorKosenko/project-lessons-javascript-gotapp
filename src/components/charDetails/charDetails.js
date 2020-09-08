@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import './charDetails.css';
-import GotService from '../../services/GotService';
+import gotService from '../../services/gotService';
 import Spinner from '../spinner';
 import ErrorMessage from '../errorMessage';
 
 export default class CharDetails extends Component {
 
-    gotService =new GotService();
+    gotService =new gotService();
 
     state = {
         char: null,
@@ -44,7 +44,7 @@ export default class CharDetails extends Component {
             return;
         }
 
-        this.gotService.getCharacters(charId)
+        this.gotService.getCharacter(charId)
             .then(this.onCharLoaded)
             .catch(this.onError);
         // this.foo.bar = 0;

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './itemList.css';
-import GotService from '../../services/GotService';
+import gotService from '../../services/gotService';
 import Spinner from '../spinner';
 import ErrorMessage from '../errorMessage';
 
 export default class ItemList extends Component {
-    gotService = new GotService();
+    gotService = new gotService();
 
     state = {
         charList: null,
@@ -44,7 +44,8 @@ export default class ItemList extends Component {
                 <li 
                 key={id}
                 className="list-group-item"
-                onClick={() => this.props.onCharSelected(id)}>
+                onClick={() => this.props.onCharSelected(id)}
+                >
                     {name}
                 </li>
             )
