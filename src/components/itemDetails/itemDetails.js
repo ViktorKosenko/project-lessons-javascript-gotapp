@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-
 import './itemDetails.css';
+
 
 const Field = ({item, field, label}) => {
     return (
@@ -13,17 +13,19 @@ const Field = ({item, field, label}) => {
 
 export {
     Field
-}
+};
 
 export default class ItemDetails extends Component {
+
+
     state = {
-        item: null,
+        item: null
     }
 
     componentDidMount() {
         this.updateItem();
     }
-
+    
     componentDidUpdate(prevProps) {
         if (this.props.itemId !== prevProps.itemId) {
             this.updateItem();
@@ -35,7 +37,7 @@ export default class ItemDetails extends Component {
         if (!itemId) {
             return;
         }
-        
+
         getData(itemId)
             .then((item) => {
                 this.setState({item})
@@ -43,17 +45,15 @@ export default class ItemDetails extends Component {
     }
 
     render() {
-        const {errorText} = this.props;
 
         if (!this.state.item) {
-        return <span className='select-error'>{errorText}</span>
+            return <span className='select-error'>Please select item in the list</span>
         }
-
         const {item} = this.state;
         const {name} = item;
-        
+
         return (
-            <div className="item-details rounded">
+            <div className="char-details rounded">
                 <h4>{name}</h4>
                 <ul className="list-group list-group-flush">
                     {
@@ -64,6 +64,5 @@ export default class ItemDetails extends Component {
                 </ul>
             </div>
         );
-
     }
 }

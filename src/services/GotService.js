@@ -1,3 +1,4 @@
+
 export default class GotService {
     constructor() {
         this._apiBase = 'https://www.anapioficeandfire.com/api';
@@ -46,15 +47,15 @@ export default class GotService {
     isSet(data) {
         if (data) {
             if (Array.isArray(data)) {
-                return data.map((item) => item ? item : 'no data :(')
+                return data.map((item) => item ? `${item}; ` : 'no data :(')
             } else {
                 return data
             }
         } else {
             return 'no data :('
         }
-    }    
-    
+    }  
+
     _extractId = (item) => {
         const idRegExp = /\/([0-9]*)$/;
         return item.url.match(idRegExp)[1];

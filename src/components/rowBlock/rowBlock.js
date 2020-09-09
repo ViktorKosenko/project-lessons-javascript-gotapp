@@ -10,7 +10,7 @@ const RowBlock = ({left, right}) => {
             <Col md='6'>
                 {right}
             </Col>
-        </Row>   
+        </Row>
     )
 }
 

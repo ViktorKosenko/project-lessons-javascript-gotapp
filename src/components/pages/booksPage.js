@@ -1,27 +1,26 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ItemList from '../itemList';
 import ErrorMessage from '../errorMessage';
 import gotService from '../../services/gotService';
 import {withRouter} from 'react-router-dom';
 
-
-class BooksPage extends Component {
-    gotService =new gotService();
+export class BooksPage extends Component {
+    gotService = new gotService();
 
     state = {
+        selectedBook: null,
         error: false
-    }
-
-    componentDidCatch() {
-        console.log('error');
-        this.setState({
-            error: true
-        })
     }
 
     onItemSelected = (id) => {
         this.setState({
             selectedBook: id
+        })
+    }
+
+    componentDidCatch() {
+        this.setState({
+            error: true
         })
     }
 
@@ -31,14 +30,13 @@ class BooksPage extends Component {
         }
 
         return (
-            <ItemList
+            <ItemList 
             onItemSelected={(itemId) => {
                 this.props.history.push(itemId)
             }}
             getData={this.gotService.getAllBooks}
-            renderItem={(item) => item.name}/>
-        )  
+            renderItem={({name}) => name}/>
+        )
     }
 }
-
 export default withRouter(BooksPage);

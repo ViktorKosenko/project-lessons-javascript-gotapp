@@ -10,7 +10,7 @@ const Header = () => {
                 Game of Thrones DB
                 </Link>
             </h3>
-            <ul className="header-links-list">
+            <ul className="header-list">
                 <li>
                     <Link to='/characters/'>Characters</Link>
                 </li>

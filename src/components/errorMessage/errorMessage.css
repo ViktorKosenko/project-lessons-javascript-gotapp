@@ -1,11 +1,3 @@
-.alert {
-    display: block;
-    text-align: center;
-    background-color: yellow; /* Red */
-    color: black;
-    margin: 0 auto;
-  }
-
 .random-block img {
-  width: 100%;
+    width: 100%;
 }

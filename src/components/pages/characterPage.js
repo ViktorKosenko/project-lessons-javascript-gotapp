@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ItemList from '../itemList';
 import ItemDetails, {Field} from '../itemDetails';
 import ErrorMessage from '../errorMessage';
@@ -6,18 +6,11 @@ import gotService from '../../services/gotService';
 import RowBlock from '../rowBlock';
 
 export default class CharacterPage extends Component {
-    gotService =new gotService();
+    gotService = new gotService();
 
     state = {
         selectedChar: null,
         error: false
-    }
-
-    componentDidCatch() {
-        console.log('error');
-        this.setState({
-            error: true
-        })
     }
 
     onItemSelected = (id) => {
@@ -26,7 +19,13 @@ export default class CharacterPage extends Component {
         })
     }
 
-    render () {
+    componentDidCatch() {
+        this.setState({
+            error: true
+        })
+    }
+ 
+    render() {
         if (this.state.error) {
             return <ErrorMessage/>
         }
@@ -38,20 +37,19 @@ export default class CharacterPage extends Component {
                 renderItem={({name, gender}) => `${name} (${gender})`}/>
         )
 
-        const charDetails = (
-            <ItemDetails 
-                itemId={this.state.selectedChar} 
-                errorText='Please select a character'
-                getData={this.gotService.getCharacter}>
-                    <Field field='gender' label='Gender'/>
-                    <Field field='born' label='Born'/>
-                    <Field field='died' label='Died'/>
-                    <Field field='culture' label='Culture'/>
+        const itemDetails = (
+            <ItemDetails
+            itemId={this.state.selectedChar}
+            getData={this.gotService.getCharacter} >
+                <Field field='gender' label='Gender'/>
+                <Field field='born' label='Born'/>
+                <Field field='died' label='Died'/>
+                <Field field='culture' label='Culture'/>
             </ItemDetails>
         )
 
         return (
-            <RowBlock left={itemList} right={charDetails}/>
-        )    
+           <RowBlock left={itemList} right={itemDetails} />
+        )
     }
 }
