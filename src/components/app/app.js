@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import CharacterPage from '../characterPage';
+import CharacterPage from '../pages/characterPage';
+import BookPage from '../pages/bookPage';
+import HousesPage from '../pages/housesPage';
 import ErrorMessage from '../errorMessage';
 // import PersonDetails from '../personDetails';
-
 
 import './app.css';
 
 export default class App extends Component {
+
+
     state = {
         showRandomChar: true,
         selectedChar: null,
@@ -54,6 +57,8 @@ export default class App extends Component {
                         </Col>
                     </Row>
                     <CharacterPage/>
+                    <HousesPage/>
+                    <BookPage/>
                 </Container>
             </>
         )
