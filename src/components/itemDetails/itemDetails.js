@@ -51,7 +51,7 @@ export default class ItemDetails extends Component {
 
         const {item} = this.state;
         const {name} = item;
-        console.log(item);
+        
         return (
             <div className="item-details rounded">
                 <h4>{name}</h4>

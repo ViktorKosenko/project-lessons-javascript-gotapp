@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import {Col, Row, Container} from 'reactstrap';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import CharacterPage from '../pages/characterPage';
-import BookPage from '../pages/bookPage';
-import HousesPage from '../pages/housesPage';
+import {CharacterPage, BooksPage, HousesPage, BooksItem} from '../pages';
 import ErrorMessage from '../errorMessage';
-// import PersonDetails from '../personDetails';
 
 import './app.css';
 
 export default class App extends Component {
-
-
     state = {
         showRandomChar: true,
         selectedChar: null,
@@ -43,24 +39,33 @@ export default class App extends Component {
         const randomChar = showRandomChar ? <RandomChar/> : null;
 
         return (
-            <> 
-                <Container>
-                    <Header />
-                </Container>
-                <Container>
-                    <Row>
-                        <Col lg={{size: 5, offset: 0}}>
-                            {randomChar}
-                            <button 
-                                className="toggle-btn"
-                                onClick={this.toggleRandomChar}>Toggle random character</button>
-                        </Col>
-                    </Row>
-                    <CharacterPage/>
-                    <HousesPage/>
-                    <BookPage/>
-                </Container>
-            </>
+            <Router>
+                <div className="app"> 
+                    <Container>
+                        <Header />
+                    </Container>
+                    <Container>
+                        <Row>
+                            <Col lg={{size: 5, offset: 0}}>
+                                {randomChar}
+                                <button 
+                                    className="toggle-btn"
+                                    onClick={this.toggleRandomChar}>Toggle random character</button>
+                            </Col>
+                        </Row>
+                        <Route exact pach='/' component={() => <h1>Welcome to GOT DB</h1>}/>
+                        <Route pach='/characters' component={CharacterPage}/>
+                        <Route pach='/houses' component={HousesPage}/>
+                        <Route exact pach='/books' component={BooksPage}/>
+                        <Route exact pach='/books/:id' render={
+                            ({match}) => {
+                                const {id} = match.params;
+                                return <BooksItem bookId={id}/>
+                            }                            
+                        }/>
+                    </Container>
+                </div>
+            </Router>
         )
     }
 }
